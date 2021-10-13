@@ -172,6 +172,13 @@ function remove(tracksId) {
   });
 }
 
+function removeUpcomingTracks() {
+  const activeTrackIndex = tracksQueue.findIndex(
+    (track) => track.id === activeTrack.id
+  );
+  tracksQueue.splice(activeTrackIndex + 1);
+}
+
 function getDuration() {
   return playerContext.duration || 0;
 }
@@ -188,7 +195,7 @@ function getBufferedPosition() {
   return 0;
 }
 
-function getPlaybackState() {
+function getState() {
   if (!playerContext.paused && playerContext.duration >= 0) {
     return 'STATE_PLAYING';
   }
@@ -272,10 +279,11 @@ export default {
   getCurrentTrack,
   getTrack,
   remove,
+  removeUpcomingTracks,
   getDuration,
   getPosition,
   getBufferedPosition,
-  getPlaybackState,
+  getState,
   getVolume,
   setVolume,
   seekTo,
