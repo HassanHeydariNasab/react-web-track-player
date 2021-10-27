@@ -40,16 +40,19 @@ async function play(position = 0) {
 
   playerContext.volume = globalVolume;
 
-  navigator.mediaSession.metadata = new window.MediaMetadata({
-    title: activeTrack.title,
-    artist: activeTrack.artist,
-    album: activeTrack.album,
-    artwork: activeTrack.artwork,
-  });
+  if (window.MediaMetadata)
+    navigator.mediaSession.metadata = new window.MediaMetadata({
+      title: activeTrack.title,
+      artist: activeTrack.artist,
+      album: activeTrack.album,
+      artwork: activeTrack.artwork,
+    });
 
   await playerContext.play();
 
-  navigator.mediaSession.playbackState = 'playing';
+  if (navigator.mediaSession) {
+    navigator.mediaSession.playbackState = 'playing';
+  }
 }
 
 function pause() {
@@ -59,7 +62,9 @@ function pause() {
 
   playerContext.pause();
 
-  navigator.mediaSession.playbackState = 'paused';
+  if (navigator.mediaSession) {
+    navigator.mediaSession.playbackState = 'paused';
+  }
 }
 
 async function skipToNext() {
@@ -81,12 +86,13 @@ async function skipToNext() {
     playerContext.src = activeTrack && activeTrack.url;
     playerContext.volume = globalVolume;
 
-    navigator.mediaSession.metadata = new window.MediaMetadata({
-      title: activeTrack.title,
-      artist: activeTrack.artist,
-      album: activeTrack.album,
-      artwork: activeTrack.artwork,
-    });
+    if (window.MediaMetadata)
+      navigator.mediaSession.metadata = new window.MediaMetadata({
+        title: activeTrack.title,
+        artist: activeTrack.artist,
+        album: activeTrack.album,
+        artwork: activeTrack.artwork,
+      });
 
     await playerContext.play();
   }
@@ -111,12 +117,13 @@ async function skipToPrevious() {
     playerContext.src = activeTrack && activeTrack.url;
     playerContext.volume = globalVolume;
 
-    navigator.mediaSession.metadata = new window.MediaMetadata({
-      title: activeTrack.title,
-      artist: activeTrack.artist,
-      album: activeTrack.album,
-      artwork: activeTrack.artwork,
-    });
+    if (window.MediaMetadata)
+      navigator.mediaSession.metadata = new window.MediaMetadata({
+        title: activeTrack.title,
+        artist: activeTrack.artist,
+        album: activeTrack.album,
+        artwork: activeTrack.artwork,
+      });
 
     await playerContext.play();
   }
@@ -137,12 +144,13 @@ async function skipToIndex(index) {
     playerContext.src = activeTrack && activeTrack.url;
     playerContext.volume = globalVolume;
 
-    navigator.mediaSession.metadata = new window.MediaMetadata({
-      title: activeTrack.title,
-      artist: activeTrack.artist,
-      album: activeTrack.album,
-      artwork: activeTrack.artwork,
-    });
+    if (window.MediaMetadata)
+      navigator.mediaSession.metadata = new window.MediaMetadata({
+        title: activeTrack.title,
+        artist: activeTrack.artist,
+        album: activeTrack.album,
+        artwork: activeTrack.artwork,
+      });
 
     await playerContext.play();
   }
