@@ -13,7 +13,7 @@ const useTrackPlayerProgress = (intervalTime = 1000) => {
   const [state, setState] = useState(initialState);
 
   const getProgress = () => {
-    if (player.getCurrentTrack()) {
+    if (player.getCurrentTrack() !== -1) {
       const position = player.getPosition();
       const bufferedPosition = player.getBufferedPosition();
       const duration = player.getDuration();
