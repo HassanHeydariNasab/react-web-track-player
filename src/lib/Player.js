@@ -161,11 +161,11 @@ function getQueue() {
 }
 
 function getCurrentTrack() {
-  return activeTrack;
+  return tracksQueue.findIndex((t) => t.id === activeTrack.id);
 }
 
-function getTrack(trackId) {
-  return tracksQueue.find((track) => track.id === trackId);
+function getTrack(trackIndex) {
+  return tracksQueue[trackIndex];
 }
 
 function remove(tracksId) {
